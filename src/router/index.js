@@ -8,8 +8,14 @@ const routes = [
   {
     path: "/",
     name: "Home",
+    redirect: "/films",
     component: Home,
     children: [
+      {
+        path: "/films",
+        name: "Films",
+        component: () => import("../components/Films.vue"),
+      },
       {
         path: "/people",
         name: "People",

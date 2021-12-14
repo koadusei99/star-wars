@@ -1,47 +1,54 @@
 <template>
   <div class="home">
-    <div id="nav">
+    <div class="sidebar">
       <router-link to="/">Dashboard</router-link>
       <router-link to="/starships">Starships</router-link>
       <router-link to="/people">People</router-link>
       <router-link to="/vehicles">Vehicles</router-link>
       <router-link to="/species">Species</router-link>
     </div>
-    <p v-for="(character, key) in getAllCharacters" :key="key">
-      {{ character.gender }}
-    </p>
-    <router-view />
+    <div class="main">
+      <div class="nav"><p>NAVBAR</p></div>
+      <div class="filter"><p>Date Tings</p></div>
+      <router-view class="view" />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
 import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "Home",
   mounted: function () {
-    this.getCharacters();
+    this.fetchDashData();
   },
-
-  data() {
-    return {};
-  },
-  components: {},
   computed: {
-    ...mapGetters(["getAllCharacters"]),
+    ...mapGetters(["dashboardData"]),
   },
   methods: {
-    ...mapActions(["getCharacters"]),
+    ...mapActions(["fetchDashData"]),
   },
 };
 </script>
 
 <style scoped>
-#nav {
+.home {
+  display: flex;
+}
+.nav {
+  padding: 10px;
+}
+.main {
+}
+.sidebar {
   display: flex;
   flex-direction: column;
   float: left;
-  margin: 50px;
+}
+.view {
+  border: 2px solid red;
+  padding: 20px;
+  background-color: rgba(133, 49, 49, 0.2);
 }
 </style>
