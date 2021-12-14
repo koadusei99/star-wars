@@ -7,10 +7,9 @@
       <router-link to="/vehicles">Vehicles</router-link>
       <router-link to="/species">Species</router-link>
     </div>
-    <p v-for="character in getAllCharacters" :key="key">
-      {{ character }}
+    <p v-for="(character, key) in getAllCharacters" :key="key">
+      {{ character.gender }}
     </p>
-    <p>{{ getAllCharacters }}</p>
     <router-view />
   </div>
 </template>
@@ -21,8 +20,8 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Home",
-  mounted() {
-    () => this.getCharacters();
+  mounted: function () {
+    this.getCharacters();
   },
 
   data() {
